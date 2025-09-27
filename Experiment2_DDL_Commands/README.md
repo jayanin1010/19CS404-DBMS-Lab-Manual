@@ -105,15 +105,34 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+    Create a table named Members with the following columns:
+    
+    MemberID as INTEGER
+    MemberName as TEXT
+    JoinDate as DATE
+    For example:
+    
+    Test	Result
+    pragma table_info('Members');
+    cid         name        type        notnull     dflt_value  pk
+    ----------  ----------  ----------  ----------  ----------  ----------
+    0           MemberID    INTEGER     0                       0
+    1           MemberName  TEXT        0                       0
+    2           JoinDate    DATE        0                       0
+
 
 ```sql
--- Paste your SQL code below for Question 1
+CREATE TABLE Members(
+MemberID INTEGER,
+MemberName TEXT,
+JoinDate DATE
+);
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1276" height="276" alt="image" src="https://github.com/user-attachments/assets/0fcad0bb-6c3a-4790-8a08-9a066214b1f4" />
+
 
 **Question 2**
 ---
