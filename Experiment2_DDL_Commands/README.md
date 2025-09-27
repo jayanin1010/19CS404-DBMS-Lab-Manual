@@ -415,4 +415,6 @@ FOREIGN KEY(ProjectID)REFERENCES Projects(ProjectID)
 
 
 ## RESULT
+<img width="1420" height="246" alt="image" src="https://github.com/user-attachments/assets/29199d76-2982-4b16-a703-98c4ddbc66ad" />
+
 Thus, the SQL queries to implement different types of constraints and DDL commands have been executed successfully.
