@@ -388,4 +388,6 @@ DELETE FROM customer WHERE AGENT_CODE='A003' OR AGENT_CODE='A008';
 
 
 ## RESULT
+<img width="1860" height="697" alt="image" src="https://github.com/user-attachments/assets/35d5d529-d820-42af-a728-3aae080ccd1f" />
+
 Thus, the SQL queries to implement DML commands have been executed successfully.
