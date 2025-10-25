@@ -38,123 +38,339 @@ HAVING condition;
 
 **Question 1**
 --
--- Paste Question 1 here
+    How many appointments are scheduled in each hour of the day?
+    
+    Sample table:Appointments Table
+    
+    name                              type
+    --------------------          ----------
+    AppointmentID               INTEGER
+    PatientID                         INTEGER
+    DoctorID                         INTEGER
+    AppointmentDateTime   DATETIME
+    Purpose                           TEXT
+    Status                              TEXT     
+    
+    For example:
+    
+    Result
+    HourOfDay   TotalAppointments
+    ----------  -----------------
+    09          2
+    10          5
+    11          1
+    14          1
+    16          1
 
 ```sql
--- Paste your SQL code below for Question 1
+SELECT strftime('%H',AppointmentDateTime) AS HourOfDay,
+COUNT(*) AS TotalAppointments FROM Appointments GROUP BY HourOfDay;
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="811" height="518" alt="image" src="https://github.com/user-attachments/assets/67f4000a-ba8c-4b3d-a929-207b380e21e6" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+    What is the average age of doctors in each medical specialty?
+    
+    Sample table:Doctors Table
+    
+    
+    
+    For example:
+    
+    Result
+    Specialty          AvgAge
+    -----------------  ----------
+    Endocrinology      44.0
+    Gastroenterology   39.0
+    Neurology          41.0
+    Obstetrics         53.0
+    Pediatrics         48.0
+    Urology            44.0
+
 
 ```sql
--- Paste your SQL code below for Question 2
+--SELECT Specialty,AVG(strftime('%Y','now')-strftime('%Y',DateOfBirth)) AS AvgAge FROM Doctors GROUP BY Specialty;
+
+SELECT Specialty,AVG((strftime('%Y','now')-strftime('%Y',DateOfBirth))-(strftime('%m-%d','now')<strftime('%m-%d',DateOfBirth))
+)AS AvgAge FROM Doctors GROUP BY Specialty;
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="804" height="624" alt="image" src="https://github.com/user-attachments/assets/33875cb4-cfb5-4963-9e89-4168db2685bb" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+    How many prescriptions were written by each doctor?
+    
+    Sample tablePrescriptions Table
+    
+    
+    
+    For example:
+    
+    Result
+    DoctorID    TotalPrescriptions
+    ----------  ------------------
+    1           1
+    2           1
+    3           1
+    4           1
+    5           1
+    6           1
+    7           1
+    8           1
+    9           1
+    10          1
+
 
 ```sql
--- Paste your SQL code below for Question 3
+SELECT DoctorID,COUNT(*)AS TotalPrescriptions FROM Prescriptions GROUP BY DoctorID;
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="746" height="722" alt="image" src="https://github.com/user-attachments/assets/a9926073-7196-48ef-95d1-e7cd81e55cf2" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+    Write a SQL query to calculate the total number of working hours of all employees
+    
+    Sample table: employee1
+    
+    
+     
+    
+    For example:
+    
+    Result
+    Total working hours
+    -------------------
+    111
+
 
 ```sql
--- Paste your SQL code below for Question 4
+SELECT SUM(workhour)AS "Total working hours" FROM employee1;
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="642" height="293" alt="image" src="https://github.com/user-attachments/assets/41887aba-8796-43fc-8b22-5511f95eda07" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+    Write a SQL query to find the number of employees whose age is greater than 32.
+    
+    Sample table: employee
+    
+    id
+    
+    name
+    
+    age
+    
+    address
+    
+    salary
+    
+    1
+    
+    Paul
+    
+    32
+    
+    California
+    
+    20000
+    
+    4
+    
+    Mark
+    
+    25
+    
+    Richtown
+    
+    65000
+    
+    5
+    
+    David
+    
+    27
+    
+    Texas
+    
+    85000
+    
+     
+    
+    For example:
+    
+    Result
+    COUNT
+    ----------
+    5
+
 
 ```sql
--- Paste your SQL code below for Question 5
+SELECT COUNT(*) AS COUNT FROM employee WHERE age>32;
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="436" height="263" alt="image" src="https://github.com/user-attachments/assets/c27fae78-ba08-40a7-9a01-f68abc71d4c4" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+    Write a SQL query to find What is the age difference between the youngest and oldest employee in the company.
+    
+    Table: employee
+    
+    name        type
+    ----------  ----------
+    id          INTEGER
+    name        TEXT
+    age         INTEGER
+    city        TEXT
+    income      INTEGER
+    For example:
+    
+    Result
+    age_difference
+    --------------
+    13
+
 
 ```sql
--- Paste your SQL code below for Question 6
+SELECT MAX(age)-MIN(age)AS age_difference FROM employee;
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="503" height="278" alt="image" src="https://github.com/user-attachments/assets/7c11538d-8582-4a6c-a05b-2d66f66a065c" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+    Write a SQL query to find the average length of email addresses (in characters):
+    
+    Table: customer
+    
+    name        type
+    ----------  ----------
+    id          INTEGER
+    name        TEXT
+    city        TEXT
+    email       TEXT
+    phone       INTEGER
+    For example:
+    
+    Result
+    avg_email_length
+    ----------------
+    15.0
+
 
 ```sql
--- Paste your SQL code below for Question 7
+SELECT AVG(LENGTH(email)) AS avg_email_length FROM customer;
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="668" height="274" alt="image" src="https://github.com/user-attachments/assets/d23e04ce-e622-4ed9-8ab5-b2586aae1299" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+    Write the SQL query that accomplishes the grouping of data by age intervals using the expression (age/5)5, calculates the minimum age for each group, and excludes groups where the minimum age is not less than 25.
+    
+    Sample table: customer1
+    
+    
+    
+    For example:
+    
+    Result
+    age_group   MIN(age)
+    ----------  ----------
+    20          22
+
 
 ```sql
--- Paste your SQL code below for Question 8
+SELECT (age/5)*5 AS age_group,MIN(age) FROM customer1 GROUP BY age_group HAVING MIN(age)<25;
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="752" height="285" alt="image" src="https://github.com/user-attachments/assets/197c119f-231a-4b88-832d-3eb390043851" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+    Write the SQL query that achieves the grouping of data by city, calculates the total income for each city, and includes only those cities where the total income sum is greater than 200,000.
+    
+    Sample table: employee
+    
+    
+    
+    For example:
+    
+    Result
+    city        Income
+    ----------  ----------
+    Alaska      450000
+    Arizona     1000000
+    California  5300000
+    Florida     5350000
+    Georgia     250000
+
 
 ```sql
--- Paste your SQL code below for Question 9
+SELECT city,SUM(income)AS Income FROM employee GROUP BY city HAVING SUM(income)>200000;
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="724" height="515" alt="image" src="https://github.com/user-attachments/assets/6cc9aac1-257b-4bd0-83db-69037770a78a" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+    Write the SQL query that achieves the grouping of data by occupation, calculates the minimum work hours for each occupation, and excludes occupations where the minimum work hour is not greater than 8.
+    
+    Sample table: employee1
+    
+    
+    
+    For example:
+    
+    Result
+    occupation  MIN(workhour)
+    ----------  -------------
+    Business    10
+    Doctor      15
+    Engineer    12
+    Teacher     9
+
 
 ```sql
--- Paste your SQL code below for Question 10
+SELECT occupation,MIN(workhour)
+FROM employee1
+GROUP BY occupation HAVING MIN(workhour)>8;
 ```
 
 **Output:**
-
-![Output10](output.png)
+<img width="903" height="459" alt="image" src="https://github.com/user-attachments/assets/0cc9ec7e-2d39-4e01-95aa-d7819ba9f2d6" />
 
 
 ## RESULT
