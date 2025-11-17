@@ -60,8 +60,30 @@ Key Differences:
 - Use `DBMS_OUTPUT.PUT_LINE` to display the result.
 - Call the procedure with a number as input.
 
+**Program**
+
+      SET SERVEROUTPUT ON;
+      
+      CREATE OR REPLACE PROCEDURE find_square(n IN NUMBER)
+      IS
+          sq NUMBER;
+      BEGIN
+          sq := n * n;
+          DBMS_OUTPUT.PUT_LINE('Square of ' || n || ' is ' || sq);
+      END;
+      /
+      
+      -- CALL THE PROCEDURE
+      BEGIN
+          find_square(6);
+      END;
+      /
+
+
 **Expected Output:**  
 Square of 6 is 36
+<img width="259" height="131" alt="image" src="https://github.com/user-attachments/assets/473afdab-468e-4572-851d-ff7cfc3c8eae" />
+
 
 ---
 
@@ -74,8 +96,38 @@ Square of 6 is 36
 - Return the result using the `RETURN` statement.
 - Call the function using a `SELECT` statement or in an anonymous block.
 
+**Program**
+
+      SET SERVEROUTPUT ON;
+      
+      CREATE OR REPLACE FUNCTION get_factorial(n IN NUMBER)
+      RETURN NUMBER
+      IS
+          fact NUMBER := 1;
+          i NUMBER;
+      BEGIN
+          FOR i IN 1..n LOOP
+              fact := fact * i;
+          END LOOP;
+      
+          RETURN fact;
+      END;
+      /
+      
+      -- CALL THE FUNCTION
+      DECLARE
+          x NUMBER;
+      BEGIN
+          x := get_factorial(5);
+          DBMS_OUTPUT.PUT_LINE('Factorial of 5 is ' || x);
+      END;
+      /
+
+
 **Expected Output:**  
 Factorial of 5 is 120
+<img width="567" height="296" alt="image" src="https://github.com/user-attachments/assets/f02df78a-bbbd-43e2-b229-298beff12c99" />
+
 
 ---
 
@@ -87,8 +139,32 @@ Factorial of 5 is 120
 - Use the `MOD` function to check if the number is divisible by 2.
 - Display whether it is Even or Odd using `DBMS_OUTPUT.PUT_LINE`.
 
+**Program**
+
+      SET SERVEROUTPUT ON;
+      
+      CREATE OR REPLACE PROCEDURE check_even_odd(n IN NUMBER)
+      IS
+      BEGIN
+          IF MOD(n, 2) = 0 THEN
+              DBMS_OUTPUT.PUT_LINE(n || ' is Even');
+          ELSE
+              DBMS_OUTPUT.PUT_LINE(n || ' is Odd');
+          END IF;
+      END;
+      /
+      
+      -- CALL THE PROCEDURE
+      BEGIN
+          check_even_odd(12);
+      END;
+      /
+
+
 **Expected Output:**  
 12 is Even
+<img width="405" height="201" alt="image" src="https://github.com/user-attachments/assets/f08da2c5-5e40-4251-bceb-2365323ec4cd" />
+
 
 ---
 
@@ -101,8 +177,39 @@ Factorial of 5 is 120
 - Return the reversed number.
 - Call the function and display the output.
 
+**Program**
+
+      SET SERVEROUTPUT ON;
+      
+      CREATE OR REPLACE FUNCTION reverse_number(n IN NUMBER)
+      RETURN NUMBER
+      IS
+          rev NUMBER := 0;
+          temp NUMBER := n;
+      BEGIN
+          WHILE temp > 0 LOOP
+              rev := rev * 10 + MOD(temp, 10);
+              temp := FLOOR(temp / 10);
+          END LOOP;
+      
+          RETURN rev;
+      END;
+      /
+      
+      -- CALL FUNCTION
+      DECLARE
+          ans NUMBER;
+      BEGIN
+          ans := reverse_number(1234);
+          DBMS_OUTPUT.PUT_LINE('Reversed number of 1234 is ' || ans);
+      END;
+      /
+
+
 **Expected Output:**  
 Reversed number of 1234 is 4321
+<img width="422" height="199" alt="image" src="https://github.com/user-attachments/assets/55a00034-dd61-4ded-8aec-11989b5b6072" />
+
 
 ---
 
@@ -114,6 +221,29 @@ Reversed number of 1234 is 4321
 - Use a loop from 1 to 10 to multiply the input number.
 - Display the multiplication results using `DBMS_OUTPUT.PUT_LINE`.
 
+**Program**
+
+      SET SERVEROUTPUT ON;
+      
+      CREATE OR REPLACE PROCEDURE print_table(n IN NUMBER)
+      IS
+      BEGIN
+          DBMS_OUTPUT.PUT_LINE('Multiplication Table of ' || n || ':');
+      
+          FOR i IN 1..10 LOOP
+              DBMS_OUTPUT.PUT_LINE(n || ' x ' || i || ' = ' || (n * i));
+          END LOOP;
+      END;
+      /
+      
+      -- CALL PROCEDURE
+      BEGIN
+          print_table(5);
+      END;
+      /
+
+
+
 **Expected Output:**  
 Multiplication table of 5:  
 5 x 1 = 5  
@@ -121,6 +251,8 @@ Multiplication table of 5:
 5 x 3 = 15  
 ...  
 5 x 10 = 50
+<img width="484" height="394" alt="image" src="https://github.com/user-attachments/assets/ecf087ae-3d21-4733-9087-8f9e1136d77b" />
+
 
 ## RESULT
 Thus, the PL/SQL programs using procedures and functions were written, compiled, and executed successfully.
